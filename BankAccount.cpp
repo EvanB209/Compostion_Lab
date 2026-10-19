@@ -19,9 +19,11 @@ BankAccount::BankAccount(std::string accountNumber, std::string accountHolderNam
 }
 BankAccount& BankAccount::operator+=(double amount) {
     this-> balance = balance + amount;
+    return *this;
 }
 BankAccount& BankAccount::operator-=(double amount) {
     this-> balance = balance - amount;
+    return *this;
 }
 bool BankAccount::operator==(const BankAccount& other) const {
     return this-> accountNumber == other.accountNumber;
@@ -50,6 +52,8 @@ void BankAccount::printAccount(const BankAccount& account) {
 }
 void BankAccount::deposit(double amount) {
     this-> balance = balance + amount;
+    Transaction newTransaction("Deposit", amount, "I don't know how to implement a timestamp");
+    this-> transactionHistory.push_back(newTransaction);
 }
 BankAccount BankAccount::createAccountFromInput() {
     double newBalance;
@@ -66,6 +70,8 @@ BankAccount BankAccount::createAccountFromInput() {
 }
 void BankAccount::withdraw(double amount) {
     this-> balance = balance - amount;
+    Transaction newTransaction("Withdrawal", amount, "I don't know how to implement a timestamp");
+    this-> transactionHistory.push_back(newTransaction);
 }
 double BankAccount::getBalance() const {
     return balance;
@@ -73,10 +79,19 @@ double BankAccount::getBalance() const {
 string BankAccount::getAccountHolderName() const {
     return accountHolderName;
 }
+std::vector<Transaction> BankAccount::getTransactionHistory() const {
+    return transactionHistory;
+}
 void BankAccount::setAccountHolderName(string newName) {
     this-> accountHolderName = newName;
 }
 string BankAccount::getAccountNumber() const {
     return accountNumber;
+}
+
+void BankAccount::printHistory(const std::vector<Transaction>& history) {
+    for (unsigned int i = 0; i < history.size()-1; i++) {
+    std::cout<<"Transaction Type: "<< history.at(i).Type<<" Amount: $" <<history.at(i).Amount<< " Timestamp: " << history.at(i).TimeStamp<<endl;
+    }
 }
 

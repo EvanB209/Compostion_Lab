@@ -10,4 +10,6 @@ add_executable(Operator_Overload_Lab main.cpp
         CheckingAccount.h
         SavingsAccount.cpp
         SavingsAccount.h
+        Transaction.cpp
+        Transaction.h
 )

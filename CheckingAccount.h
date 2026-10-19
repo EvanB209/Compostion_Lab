@@ -4,7 +4,10 @@
 
 #ifndef INHERITANCE_CHECKINGACCOUNT_H
 #define INHERITANCE_CHECKINGACCOUNT_H
+#include <vector>
+
 #include "BankAccount.h"
+#include "Transaction.h"
 
 
 class CheckingAccount : public BankAccount {
@@ -14,6 +17,7 @@ public:
     void withdraw(double amount) override;
 private:
     double transactionFees;
+
 };
 
 

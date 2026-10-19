@@ -4,7 +4,11 @@
 
 #ifndef OPERATOR_OVERLOAD_LAB_BANKACCOUNT_H
 #define OPERATOR_OVERLOAD_LAB_BANKACCOUNT_H
+#include <format>
 #include <string>
+#include <vector>
+
+#include "Transaction.h"
 
 
 class BankAccount {
@@ -12,6 +16,7 @@ private:
     std::string accountNumber;
     std::string accountHolderName;
     double balance;
+    std::vector<Transaction> transactionHistory;
 
 public:
     std::string getAccountNumber() const;
@@ -25,12 +30,14 @@ public:
     bool operator>(const BankAccount& other) const;
     std::string getAccountHolderName() const;
     double getBalance() const;
+    std::vector<Transaction> getTransactionHistory() const;
     void setAccountHolderName(std::string accountHolderName);
     void deposit(double amount);
     virtual void withdraw(double amount);
     BankAccount();
     BankAccount(std::string accountNumber, std::string accountHolderName, double balance);
     static void printAccount(const BankAccount& account);
+    static void printHistory(const std::vector<Transaction>& history);
     static BankAccount createAccountFromInput();
 };
 

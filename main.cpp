@@ -25,7 +25,8 @@ int main() {
         std::cout << "5. Make a Deposit"<< std::endl;
         std::cout << "6. Make a Withdrawal"<< std::endl;
         std::cout << "7. Print Current Account"<< std::endl;
-        std::cout << "8. Quit"<< std::endl;
+        std::cout << "8. Print Current Account's Transaction Historr"<< std::endl;
+        std::cout << "9. Quit"<< std::endl;
         std::cin>> choice;
         switch (choice) {
             case 1: {
@@ -121,6 +122,10 @@ int main() {
                 break;
             }
             case 8: {
+                BankAccount::printHistory(accounts.at(accountChoice-1)->getTransactionHistory());
+                break;
+            }
+            case 9: {
                 std::cout<<"Exiting Program!"<< std::endl;
                 quit = true;
                 break;
